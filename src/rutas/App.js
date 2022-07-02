@@ -12,7 +12,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Home />}></Route>
-        <Route exact path="/Resultado" element={<Resultado />}></Route>
+        <Route exact path="/resultado" element={<Resultado />}></Route>
       </Routes>
     </BrowserRouter>
   );
