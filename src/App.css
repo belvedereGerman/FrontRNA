@@ -53,4 +53,9 @@ p {
   font-size: 20px;
   font-weight: 700;
 }
-
+ .error {
+   font-size: 20px;
+   color: red;
+   border: solid 1px red;
+   padding: 2px;
+ }

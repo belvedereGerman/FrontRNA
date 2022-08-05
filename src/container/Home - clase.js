@@ -90,7 +90,11 @@ class Home extends React.Component {
                 </div>
               </React.Fragment>
             ) : (
-              <p>Porcentaje de eficiencia: mandaste fruta</p>
+              <div className="container">
+                <p className="error">
+                  La imagen no corresponde a un auto , moto o persona{" "}
+                </p>
+              </div>
             ))}
         </main>
       </React.Fragment>
