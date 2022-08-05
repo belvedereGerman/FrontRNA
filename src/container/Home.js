@@ -1,55 +1,39 @@
-import axios from "axios";
-import React from "react";
-import Resultado from "./Resultado";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { resultado: {} };
-  }
+export default function Home() {
+  const navigate = useNavigate();
+  const [imagen, setImagen] = useState(null);
 
-  changeHandler = (e) => {
-    const el = e.target;
-    this.setState({
-      [el.name]: el.type === "file" ? el.files[0] : el.value,
-    });
-  };
-
-  submitImg = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const bodyFormData = new FormData(e.target);
-
-    return axios
-      .post("http://127.0.0.1:8000/detectar-objeto", bodyFormData)
-      .then((result) => {
-        this.guardarData(result);
-      })
-      .catch((error) => {
-        console.log("la cagamos");
-      });
+    navigate("./resultado", { imagen });
   };
+  return (
+    <body>
+      <h2>Detectar Objeto</h2>
 
-  guardarData(result) {
-    this.setState({ resultado: result }, () => {
-      console.log(this.state);
-    });
-  }
+      <form
+        /*onSubmit={(e) => {
+          e.preventDefault();
 
-  render() {
-    return (
-      <body>
-        <h2>Detectar Objeto</h2>
-
-        <form
-          onSubmit={this.submitImg}
-          encType="multipart/form-data"
-          onChange={(e) => this.changeHandler(e)}
-        >
-          <input type="file" name="img1" />
-          <button type="submit">Submit</button>
-        </form>
-      </body>
-    );
-  }
+          setImg(new FormData(e.target));
+          console.log(img);
+          navigate("./resultado", { img });
+        }}*/
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+      >
+        <input
+          type="file"
+          name="img1"
+          onChange={(e) => {
+            const el = e.target;
+            el.type === "file" ? setImagen(el.files[0]) : setImagen(el.value);
+          }}
+        />
+        <button type="submit">Submit</button>
+      </form>
+    </body>
+  );
 }
-export default Home;
