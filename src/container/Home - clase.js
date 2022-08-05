@@ -91,7 +91,7 @@ class Home extends React.Component {
               </React.Fragment>
             ) : (
               <div className="container">
-                <p className="error">
+                <p className="error centrar margentop30">
                   La imagen no corresponde a un auto , moto o persona{" "}
                 </p>
               </div>
